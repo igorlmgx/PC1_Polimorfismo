@@ -2,51 +2,69 @@
 #include <string>
 using namespace std;
 
+
+//definicao do tipo "coord" para guardar posicoes x e y
 typedef struct coord {
     short x, y;
 } coord;
 
+
+//classe base Figura
 class Figura {
-private:
+
+  private:
     coord posicao;
     short velocidade;
-    char img;
 
-public:
+  public:
 
-    Figura(short vX = 0, short vY, short velocidade = 0) {
+  Figura(short vX = 0, short vY = 0, short velocidade = 0, char img = '') {
 
-        this->posicao.x = (vX > 0 ? vX : 0);
-        this->posicao.y = (vY > 0 ? vY : 0);
+    this->posicao.x = (vX > 0 ? vX : 0);
+    this->posicao.y = (vY > 0 ? vY : 0);
+    this->velocidade = (velocidade > 0 ? velocidade : 1);
+    this->img = img;
+  }
 
-        this->velocidade = (velocidade > 0 ? velocidade : 1);
-    }
+  virtual void setPosicao(short vX, short vY) {
+    this->posicao.x = (vX > 0 ? vX : 0);
+    this->posicao.y = (vY > 0 ? vY : 0);
+  }
 
-    virtual void setPosicao(short vX, short vY) {
+  virtual coord getPosicao() const {
+    return this->posicao;
+  }
 
-        this->posicao.x = (vX > 0 ? vX : 0);
-        this->posicao.y = (vY > 0 ? vY : 0);
 
-    }
+  //a velocidade sera alterada em tempo de execucao
+  //ela representa o numero de casas que a figura anda na proxima iteracao
+  virtual void setVelocidade(short velocidade) {
+    this->velocidade = (velocidade >= 0 ? velocidade : 1);
+  }
 
-    virtual coord getPosicao() const {
-        return this->posicao;
-    }
+  virtual short getVelocidade() const {
+    return this->velocidade;
+  }
 
-    virtual void setVelocidade(short velocidade) {
-        this->velocidade = (velocidade >= 0 ? velocidade : 1);
-    }
+  //metodo para mover a figura utilizando sua velocidade
+  virtual void mover() {
+    this->posicao.x += this->velocidade;
+  }
 
-    virtual short getVelocidade() const {
-        return this->velocidade;
-    }
-
-    virtual void mover() {
-        this->posicao.x += this->velocidade;
-    }
-    
-    
+  //metodo para desenhar a figura sera implementado por cada classe derivada
+  virtual void desenhar() = 0;
 };
+
+class Circulo: public Figura {
+
+  public:
+    Circulo(short vX = 0, short vY = 0, short velocidade = 0) : Figura(vX, vY, velocidade) {/**/}
+
+    virtual void desenhar() {
+      cout << 'o';
+    }
+
+}
 
 int main() {
 
