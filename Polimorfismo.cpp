@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <unistd.h>
 using namespace std;
 
 
@@ -68,6 +69,38 @@ class Circulo: public Figura {
 
 int main() {
 
-  cout << "Δ";
+  for(int i = 0; i < 60; i++) {
+
+    for(int j = 0; j < 40; j++)
+      cout << endl;
+
+    for(int j = 0; j < i; j++)
+      cout << " ";
+    cout << "        /)―ヘ " << endl;
+
+    for(int j = 0; j < i; j++)
+      cout << " ";
+    cout << "    ＿／　　　＼" << endl;
+
+    for(int j = 0; j < i; j++)
+      cout << " ";
+    cout << " ／　　　●　　●丶" << endl;
+
+    for(int j = 0; j < i; j++)
+      cout << " ";
+    cout << "｜　　　　　▼　| " << endl;
+
+    for(int j = 0; j < i; j++)
+      cout << " ";
+    cout << "｜　　　　　亠ノ " << endl;
+
+    for(int j = 0; j < i; j++)
+      cout << " ";
+    cout << "   U￣U￣￣￣U" << endl;
+
+    usleep(75000);
+  }
+
+
 
 }
