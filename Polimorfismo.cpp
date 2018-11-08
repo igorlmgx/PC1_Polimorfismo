@@ -18,12 +18,12 @@ class Figura {
 
   public:
 
-  Figura(short vX = 0, short vY = 0, short velocidade = 0, char img = '') {
-
+    //construtor define os valores como 0 por padrao
+    //verifica se nao sao negativos
+  Figura(short vX = 0, short vY = 0, short velocidade = 0) {
     this->posicao.x = (vX > 0 ? vX : 0);
     this->posicao.y = (vY > 0 ? vY : 0);
     this->velocidade = (velocidade > 0 ? velocidade : 1);
-    this->img = img;
   }
 
   virtual void setPosicao(short vX, short vY) {
@@ -64,9 +64,10 @@ class Circulo: public Figura {
       cout << 'o';
     }
 
-}
+};
 
 int main() {
 
+  cout << "Δ";
 
 }
