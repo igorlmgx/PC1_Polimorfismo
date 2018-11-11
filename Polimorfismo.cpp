@@ -24,31 +24,31 @@ class Figura {
   Figura(short vX = 0, short vY = 0, short velocidade = 0) {
     this->posicao.x = (vX > 0 ? vX : 0);
     this->posicao.y = (vY > 0 ? vY : 0);
-    this->velocidade = (velocidade > 0 ? velocidade : 1);
+    this->velocidade = (velocidade > 0 ? velocidade : 0);
   }
 
-  virtual void setPosicao(short vX, short vY) {
+  void setPosicao(short vX, short vY) {
     this->posicao.x = (vX > 0 ? vX : 0);
     this->posicao.y = (vY > 0 ? vY : 0);
   }
 
-  virtual coord getPosicao() const {
+  coord getPosicao() const {
     return this->posicao;
   }
 
 
   //a velocidade sera alterada em tempo de execucao
   //ela representa o numero de casas que a figura anda na proxima iteracao
-  virtual void setVelocidade(short velocidade) {
+  void setVelocidade(short velocidade) {
     this->velocidade = (velocidade >= 0 ? velocidade : 1);
   }
 
-  virtual short getVelocidade() const {
+  short getVelocidade() const {
     return this->velocidade;
   }
 
   //metodo para mover a figura utilizando sua velocidade
-  virtual void mover() {
+  void mover() {
     this->posicao.x += this->velocidade;
   }
 
@@ -58,16 +58,20 @@ class Figura {
 
 class Circulo: public Figura {
 
+  //passa os parametros para o construtor de Figura
   public:
     Circulo(short vX = 0, short vY = 0, short velocidade = 0) : Figura(vX, vY, velocidade) {/**/}
 
-    virtual void desenhar() {
-      cout << 'o';
-    }
+  //implementa o metodo desenhar
+  virtual void desenhar() {
+    cout << 'o';
+  }
 
 };
 
 int main() {
+    
+    //codigo teste para desenhar a capivara do zap
 
   for(int i = 0; i < 60; i++) {
 
